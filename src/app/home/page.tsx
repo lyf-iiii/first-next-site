@@ -34,7 +34,7 @@ export default function HomePage() {
   return (
     <div className="page-fade-in">
       <Card className="mb-24" style={{ textAlign: 'center', padding: '48px 0' }}>
-        <Title level={1}>Next.js 全栈项目</Title>
+        <Title level={1}>Next.js 全栈项目111</Title>
         <Paragraph style={{ fontSize: '16px', color: '#666' }}>
           使用 Next.js 14 + Prisma + Ant Design + Zustand 构建的现代化全栈应用
         </Paragraph>

@@ -1,0 +1,41 @@
+/* Home 页面专用样式 */
+
+.hero {
+  text-align: center;
+  padding: 64px 24px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 8px;
+  color: white;
+  margin-bottom: 32px;
+}
+
+.hero h1 {
+  color: white;
+  margin-bottom: 16px;
+}
+
+.hero p {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 16px;
+  margin-bottom: 24px;
+}
+
+.featureIcon {
+  font-size: 48px;
+  color: #1890ff;
+  margin-bottom: 16px;
+}
+
+.statCard {
+  text-align: center;
+}
+
+.statCard :global(.ant-statistic-title) {
+  font-size: 14px;
+  color: #666;
+}
+
+.statCard :global(.ant-statistic-content) {
+  font-size: 32px;
+  font-weight: 600;
+}

@@ -1,0 +1,41 @@
+/* Posts 页面专用样式 */
+
+.postCard {
+  transition: all 0.3s ease;
+  border: 1px solid #f0f0f0;
+}
+
+.postCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.postTitle {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: #1890ff;
+}
+
+.postExcerpt {
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+.postMeta {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  color: #999;
+  font-size: 13px;
+}
+
+.categoryTag {
+  font-weight: 500;
+}
+
+.emptyState {
+  text-align: center;
+  padding: 64px 0;
+}

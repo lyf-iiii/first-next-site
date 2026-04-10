@@ -8,11 +8,22 @@ import { useAuthStore } from '@/stores'
 
 const { Header, Content, Footer } = Layout
 
-const menuItems = [
-  { key: '/', label: <Link href="/">首页</Link> },
-  { key: '/posts', label: <Link href="/posts">文章</Link> },
-  { key: '/about', label: <Link href="/about">关于</Link> },
-]
+const getMenuItems = (isAuthenticated: boolean) => {
+  const items = [
+    { key: '/', label: <Link href="/">首页</Link> },
+    { key: '/posts', label: <Link href="/posts">文章</Link> },
+    { key: '/about', label: <Link href="/about">关于</Link> },
+  ]
+  
+  if (isAuthenticated) {
+    items.push({ 
+      key: '/files', 
+      label: <Link href="/files">📁 文件管理</Link>,
+    })
+  }
+  
+  return items
+}
 
 export default function MainLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()
@@ -28,6 +39,14 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
     {
       key: 'profile',
       label: <Link href={`/profile/${user?.id}`}>个人中心</Link>,
+    },
+    {
+      key: 'files',
+      label: <Link href="/files">📁 文件管理</Link>,
+    },
+    {
+      key: 'upload',
+      label: <Link href="/upload">⬆️ 上传文件</Link>,
     },
     {
       key: 'settings',
@@ -53,7 +72,7 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
           theme="dark"
           mode="horizontal"
           selectedKeys={[pathname === '/posts' ? '/posts' : pathname]}
-          items={menuItems}
+          items={getMenuItems(isAuthenticated)}
           style={{ flex: 1, minWidth: 0 }}
         />
         <Space>

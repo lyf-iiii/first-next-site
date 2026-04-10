@@ -1,8 +1,9 @@
 'use client'
 
-import { Card, Row, Col, Statistic, Button, Typography, Space, List, Tag } from 'antd'
-import { ArrowUpOutlined, UserOutlined, FileTextOutlined, EyeOutlined } from '@ant-design/icons'
+import { Card, Row, Col, Statistic, Button, Typography, Space, List, Tag, Alert } from 'antd'
+import { ArrowUpOutlined, UserOutlined, FileTextOutlined, EyeOutlined, UploadOutlined } from '@ant-design/icons'
 import Link from 'next/link'
+import { useAuthStore } from '@/stores/useAuthStore'
 import '@/styles/custom.css'
 
 const { Title, Paragraph } = Typography
@@ -31,22 +32,46 @@ const features = [
 ]
 
 export default function HomePage() {
+  const { isAuthenticated, user } = useAuthStore()
+
   return (
     <div className="page-fade-in">
-      <Card className="mb-24" style={{ textAlign: 'center', padding: '48px 0' }}>
+      <Card className="mb-24 text-center py-12">
         <Title level={1}>Next.js 全栈项目111</Title>
-        <Paragraph style={{ fontSize: '16px', color: '#666' }}>
+        <Paragraph className="text-base text-gray-600">
           使用 Next.js 14 + Prisma + Ant Design + Zustand 构建的现代化全栈应用
         </Paragraph>
-        <Space style={{ marginTop: '24px' }}>
+        <Space className="mt-6">
           <Link href="/posts">
             <Button type="primary" size="large">浏览文章</Button>
           </Link>
           <Link href="/about">
             <Button size="large">了解更多</Button>
           </Link>
+          {isAuthenticated && (
+            <Link href="/upload">
+              <Button type="dashed" size="large" icon={<UploadOutlined />}>文件上传</Button>
+            </Link>
+          )}
         </Space>
       </Card>
+
+      {isAuthenticated && (
+        <Alert
+          message={`欢迎回来，${user?.name || user?.email || '用户'}！`}
+          description="您已登录，可以使用文件上传功能。"
+          type="success"
+          showIcon
+          className="mb-6"
+          action={
+            <Link href="/upload">
+              <Button size="small" type="primary" icon={<UploadOutlined />}>
+                去上传
+              </Button>
+            </Link>
+          }
+        />
+      )}
 
       <Row gutter={[16, 16]} className="mb-24">
         <Col xs={24} sm={8}>
@@ -88,10 +113,10 @@ export default function HomePage() {
           renderItem={(item) => (
             <List.Item>
               <Card size="small" className="card-hover">
-                <Tag color={item.color} style={{ marginBottom: '8px' }}>
+                <Tag color={item.color} className="mb-2">
                   {item.title}
                 </Tag>
-                <Paragraph style={{ margin: 0, fontSize: '14px' }}>
+                <Paragraph className="m-0 text-sm">
                   {item.desc}
                 </Paragraph>
               </Card>

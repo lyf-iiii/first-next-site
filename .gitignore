@@ -46,6 +46,10 @@ next-env.d.ts
 *.db
 *.db-journal
 
+# Uploads (keep directory but ignore files)
+public/uploads/*
+!public/uploads/.gitkeep
+
 # Logs
 logs
 *.log
